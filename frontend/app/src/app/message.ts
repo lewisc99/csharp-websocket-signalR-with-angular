@@ -1,6 +1,6 @@
 export class Message
 {
-    Name!:string;
-    Message!:string;
+    Name?:string;
+    Message?:string;
 }
 

@@ -7,3 +7,6 @@
 <input type="text" #name />
 <input type="text" #message /> 
 <button (click)="sendMessage(name.value, message.value)">Send</button>
+<div *ngFor="let message of newMessage">
+        <div>{{message.Name}} | {{message.Message}}</div>
+</div> 

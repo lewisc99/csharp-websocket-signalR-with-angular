@@ -2,7 +2,6 @@
 using message_notification_with_signalR.Models;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
-using System;
 
 namespace message_notification_with_signalR.Hub
 {
@@ -25,7 +24,6 @@ namespace message_notification_with_signalR.Hub
             _logger.LogInformation(" User: " + message.Name + "Message: " + message.Message);
 
             Clients.AllExcept(Context.ConnectionId).broadcastNotification(message);
-
 
         }
 

@@ -1,18 +1,11 @@
-using message_notification_with_signalR.Controllers;
 using message_notification_with_signalR.Hub;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace message_notification_with_signalR
 {
@@ -59,7 +52,6 @@ namespace message_notification_with_signalR
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "message_notification_with_signalR v1"));
             }
-
 
 
             app.UseHttpsRedirection();

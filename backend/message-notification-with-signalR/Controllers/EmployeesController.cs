@@ -31,7 +31,6 @@ namespace message_notification_with_signalR.Controllers
         {
             await _hubContext.Clients.All.broadcastNotification(message);
 
-
             return Ok(message);
         }
     }

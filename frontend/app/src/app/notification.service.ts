@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HubConnection } from "@aspnet/signalr";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, Subject } from "rxjs";
 import { Message } from "./message";
 import * as signalR from '@aspnet/signalr';
 
@@ -16,8 +16,8 @@ export class NotificationService
     }
 
     private hubConnection!:HubConnection;
-    private messages: Message[] = [];
-    public message:any = new BehaviorSubject<Message[]>([]);
+    public messages: Subject<Message> = new BehaviorSubject<Message>({});
+
 
 
     private initConnection():void 
@@ -38,8 +38,7 @@ export class NotificationService
             var newMessage:Message = new Message();
             newMessage.Name = data.user;
             newMessage.Message = data.messageSent;
-            this.messages.push(newMessage);
-            this.message.next(this.messages);
+            this.messages.next(newMessage);
         });
     }
 
@@ -48,15 +47,18 @@ export class NotificationService
         this.hubConnection.on('broadcastNotification', (data) =>
         {
             console.log(data);
-            console.log("HEY, Employee has been notified");
+          
+            var newMessage:Message = new Message();
+            newMessage.Name = data.name;
+            newMessage.Message = data.message;
+            console.log(newMessage);
+            this.messages.next(newMessage);
         });
     }
 
      sendMessage(message:Message) :void 
     {
             this.hubConnection.invoke("SendMessage",message);
-     
     }
-
     
 }
