@@ -2,6 +2,8 @@
 using message_notification_with_signalR.Models;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Threading.Tasks;
 
 namespace message_notification_with_signalR.Hub
 {
@@ -25,6 +27,21 @@ namespace message_notification_with_signalR.Hub
 
             Clients.AllExcept(Context.ConnectionId).broadcastNotification(message);
 
+        }
+
+
+        public override async Task OnConnectedAsync() {
+             await base.OnConnectedAsync();
+
+        }
+        //
+        // Summary:
+        //     Called when a connection with the hub is terminated.
+        //
+        // Returns:
+        //     A System.Threading.Tasks.Task that represents the asynchronous disconnect.
+        public override async Task OnDisconnectedAsync(Exception? exception) {
+             await base.OnDisconnectedAsync(exception);
         }
 
     }
